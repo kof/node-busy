@@ -43,7 +43,7 @@ The idea is not new, implementation probably too. I just saw this https://github
         process.exit();
     });
 
-## Api busy([options], [callback]);
+## Api `busy([options], [callback])`
 
 Optional options:
 
