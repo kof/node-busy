@@ -27,15 +27,15 @@ module.exports = function(opts, callback) {
     opts.interval || (opts.interval = 50);
 
     ret.blockedFor = 0;
-    ret.state = false;
+    ret.blocked = false;
     ret.stop = function() {
         clearTimeout(timeoutId);
     };
 
     (function check() {
         ret.blockedFor = Date.now() - start - opts.interval;
-        ret.state = ret.blockedFor > opts.tolerance;
-        if (callback && ret.state) callback(ret.blockedFor);
+        ret.blocked = ret.blockedFor > opts.tolerance;
+        if (callback && ret.blocked) callback(ret.blockedFor);
         start = Date.now();
         timeoutId = setTimeout(check, opts.interval);
     }());

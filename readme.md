@@ -43,7 +43,7 @@ The idea is not new, implementation probably too. I just saw this https://github
         process.exit();
     });
 
-## Api `busy([options], [callback])`
+## Api `busy([options], [callback])
 
 Optional options:
 
@@ -55,7 +55,7 @@ Optional callback is called every time the event loop was busy for longer amount
 
     var busyCheck = busy();
 
-    busyCheck.state; // Is true if by the last check, tolerance was exceeded
+    busyCheck.blocked; // Is true if by the last check, tolerance was exceeded
     busyCheck.blockedFor; // Number in ms the loop was blocked for, during the last check
 
     busyCheck.stop(); // Stop doing checks
