@@ -6,6 +6,8 @@ The idea is not new, implementation probably too. I just saw this https://github
 
 - Log how busy is the loop
 - Stop accepting new tasks
+- Warn yourself
+- Scale up the app
 
 ## Example (shameless copied from toobusy)
 
