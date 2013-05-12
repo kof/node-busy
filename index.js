@@ -1,10 +1,10 @@
 /**
  * Start busy checks, call back if the event loop is blocked for more time
- * than it can be tolerated.
+ * than defined in `max`.
  *
  * @param {Object} [opts]
- *   - `tolerance` in ms, default is 100ms
- *   - `interval` in ms, default is 50ms
+ *   - `max` max time in ms alowed to be busy, default is 100ms
+ *   - `interval` how often to check in ms, default is 50ms
  * @param {Function} [callback]
  * @return {Object}
  */
@@ -21,7 +21,7 @@ module.exports = function(opts, callback) {
     opts || (opts = {});
 
     // If something is blocking the loop for less than this amount of ms than its ok.
-    opts.tolerance || (opts.tolerance = 100);
+    opts.max || (opts.max = 100);
 
     // How often to check the state.
     opts.interval || (opts.interval = 50);
@@ -34,7 +34,7 @@ module.exports = function(opts, callback) {
 
     (function check() {
         ret.blockedFor = Date.now() - start - opts.interval;
-        ret.blocked = ret.blockedFor > opts.tolerance;
+        ret.blocked = ret.blockedFor > opts.max;
         if (callback && ret.blocked) callback(ret.blockedFor);
         start = Date.now();
         timeoutId = setTimeout(check, opts.interval);

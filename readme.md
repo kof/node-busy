@@ -49,15 +49,15 @@ The idea is not new, implementation probably too. I just saw this https://github
 
 Optional options:
 
-    - `tolerance` in ms, default is 100ms
+    - `max` max time in ms alowed to be busy, default is 100ms
     - `interval` how often to check the state in ms, default is 50ms
 
-Optional callback is called every time the event loop was busy for longer amount of time than defined in `tolerance`. Passed value is amount of ms the loop was blocked for.
+Optional callback is called every time the event loop was busy for longer amount of time than defined in `max`. Passed value is amount of ms the loop was blocked for.
 
 
     var busyCheck = busy();
 
-    busyCheck.blocked; // Is true if by the last check, tolerance was exceeded
+    busyCheck.blocked; // Is true if by the last check, max was exceeded
     busyCheck.blockedFor; // Number in ms the loop was blocked for, during the last check
 
     busyCheck.stop(); // Stop doing checks
