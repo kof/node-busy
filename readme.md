@@ -9,39 +9,39 @@ The idea is not new, implementation probably too. I just saw this https://github
 
 ## Example (shameless copied from toobusy)
 
-var busy = require('busy'),
-    express = require('express');
+    var busy = require('busy'),
+        express = require('express');
 
-var app = express();
+    var app = express();
 
-var busyCheck = busy(function(amount) {
-    console.log('Loop was busy for', amount, 'ms');
-});
+    var busyCheck = busy(function(amount) {
+        console.log('Loop was busy for', amount, 'ms');
+    });
 
-// middleware which blocks requests when we're too busy
-app.use(function(req, res, next) {
-    if (busyCheck.state) {
-        res.send(503, "I'm busy right now, sorry.");
-    } else {
-        next();
-    }
-});
+    // middleware which blocks requests when we're too busy
+    app.use(function(req, res, next) {
+        if (busyCheck.state) {
+            res.send(503, "I'm busy right now, sorry.");
+        } else {
+            next();
+        }
+    });
 
-app.get('/', function(req, res) {
-    // processing the request requires some work!
-    var i = 0;
-    while (i < 1e5) i++;
-    res.send("I counted to " + i);
-});
+    app.get('/', function(req, res) {
+        // processing the request requires some work!
+        var i = 0;
+        while (i < 1e5) i++;
+        res.send("I counted to " + i);
+    });
 
-var server = app.listen(3000);
+    var server = app.listen(3000);
 
-process.on('SIGINT', function() {
-    server.close();
-    // calling .stop allows your process to exit normally
-    busyCheck.stop();
-    process.exit();
-});
+    process.on('SIGINT', function() {
+        server.close();
+        // calling .stop allows your process to exit normally
+        busyCheck.stop();
+        process.exit();
+    });
 
 ## Api busy([options], [callback]);
 
