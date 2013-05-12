@@ -1,0 +1,25 @@
+{
+    "name": "busy",
+    "description": "Detect if event loop is busy.",
+    "version": "0.1.0",
+    "author": {
+        "name": "Oleg Slobodskoi",
+        "email": "oleg008@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:kof/node-busy.git"
+    },
+    "keywords": ["event", "loop", "busy", "blocked", "warn"],
+    "engines": {},
+    "devDependencies": {
+        "commander": "1.1.1"
+    },
+    "scripts": {},
+    "licenses": [
+        {
+           "type": "MIT",
+           "url": "http://www.opensource.org/licenses/mit-license.php"
+        }
+    ]
+}
