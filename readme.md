@@ -22,7 +22,7 @@ The idea is not new, implementation probably too. I just saw this https://github
 
     // middleware which blocks requests when we're too busy
     app.use(function(req, res, next) {
-        if (busyCheck.state) {
+        if (busyCheck.blocked) {
             res.send(503, "I'm busy right now, sorry.");
         } else {
             next();
